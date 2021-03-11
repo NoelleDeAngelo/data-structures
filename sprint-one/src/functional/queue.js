@@ -17,7 +17,7 @@ var Queue = function() {
     if (count > 0) {
       count -= 1;
     }
-    for ( var i = 0; i < count + 1; i++ ) {
+    for ( var i = 0; i < count; i++ ) {
       storage[i] = storage[i + 1];
     }
     return dequeued;
