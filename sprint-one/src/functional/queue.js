@@ -13,8 +13,11 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    var dequeued = stoarge[0];
-    count -= 1;
+    var dequeued = storage[0];
+    if (count > 0) {
+      count -= 1;
+    }
+    return dequeued;
   };
 
   someInstance.size = function() {
