@@ -19,6 +19,7 @@ treeMethods.addChild = function(value) {
 
 treeMethods.contains = function(target) {
   currentNode = this;
+  var found = false;
   if (currentNode.value === target) {
     return true;
   }
@@ -26,14 +27,15 @@ treeMethods.contains = function(target) {
     for (var i = 0; i < currentNode.children.length; i++) {
       var child = currentNode.children[i];
       if (child.value === target) {
-        return true;
+        found = true;
       }
-      if (child.children.length > 0 ) {
-        searchChildren(child);
+      if (found === false || child.children.length > 0 ) {
+        found = searchChildren(child);
       }
     }
+    return found;
   };
-  return false;
+  return searchChildren (currentNode);
 };
 
 
