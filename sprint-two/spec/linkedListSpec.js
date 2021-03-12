@@ -51,5 +51,36 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+  it('should be able to remove multiple items', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(6);
+    expect(linkedList.head.value).to.equal(4);
+    linkedList.removeHead();
+    expect(linkedList.head.value).to.equal(5);
+    linkedList.removeHead();
+    expect(linkedList.head.value).to.equal(6);
+  });
+
+  it('should be able to remove all added items', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.head.value).to.equal(4);
+    linkedList.removeHead();
+    expect(linkedList.head.value).to.equal(5);
+    linkedList.removeHead();
+    expect(linkedList.head).to.equal(null);
+  });
+
+  it('should be able to add multiple items with the same value', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(4);
+    expect(linkedList.head.value).to.equal(4);
+    expect(linkedList.tail.value).to.equal(4);
+    linkedList.removeHead();
+    expect(linkedList.head.value).to.equal(5);
+  });
+
   // add more tests here to test the functionality of linkedList
 });
