@@ -61,8 +61,6 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
   var nodes = this.storage;
-  console.log('fromNode rel ', nodes[fromNode].relations);
-  console.log('toNode rel ', nodes[toNode].relations);
   for (var i = 0; i < nodes[fromNode].relations.length; i++) {
     var currentRelation = nodes[fromNode].relations[i];
     if (currentRelation === toNode) {
@@ -79,6 +77,10 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for (key in this.storage) {
+
+    cb(this.storage[key].value);
+  }
 };
 
 /*
