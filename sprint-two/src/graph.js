@@ -24,10 +24,19 @@ Graph.prototype.contains = function(value) {
 };
 
 // Removes a node from the graph.
-Graph.prototype.removeNode = function(value) {
-  if (this.storage[value] !== undefined) {
-    delete this.storage[value];
+Graph.prototype.removeNode = function(nodeToBeDeleted) {
+  var nodes = this.storage;
+  for ( var i = 0; i < nodes[nodeToBeDeleted].relations.length; i++) {
+    var currentRelation = nodes[nodeToBeDeleted].relations[i];
+    for (var j = 0; j < nodes[currentRelation].relations.length; j++ ) {
+      if (nodes[currentRelation].relations[j] === nodeToBeDeleted) {
+        nodes[currentRelation].relations.splice(j, 1);
+        break;
+      }
+    }
   }
+  delete this.storage[nodeToBeDeleted];
+
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -51,6 +60,21 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+  var nodes = this.storage;
+  console.log('fromNode rel ', nodes[fromNode].relations);
+  console.log('toNode rel ', nodes[toNode].relations);
+  for (var i = 0; i < nodes[fromNode].relations.length; i++) {
+    var currentRelation = nodes[fromNode].relations[i];
+    if (currentRelation === toNode) {
+      nodes[fromNode].relations.splice(i, 1);
+    }
+  }
+  for (var i = 0; i < nodes[toNode].relations.length; i++) {
+    var currentRelation = nodes[toNode].relations[i];
+    if (currentRelation === fromNode) {
+      nodes[toNode].relations.splice(i, 1);
+    }
+  }
 };
 
 // Pass in a callback which will be executed on each node of the graph.
