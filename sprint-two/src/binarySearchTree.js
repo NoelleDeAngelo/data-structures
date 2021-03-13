@@ -50,7 +50,6 @@ BinarySearchTree.prototype.insert = function(value) {
 // else return false
 
 BinarySearchTree.prototype.contains = function(target) {
-  var currentNode = this;
   var checkForValue = function(currentNode) {
     if (currentNode.value === target) {
       return true;
@@ -62,7 +61,7 @@ BinarySearchTree.prototype.contains = function(target) {
       return false;
     }
   };
-  return checkForValue(currentNode);
+  return checkForValue(this);
 };
 
 //run call back on first node
