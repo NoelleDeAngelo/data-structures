@@ -18,11 +18,7 @@ var BinarySearchTree = function(value) {
 //else current node becomes node and start steps over
 
 BinarySearchTree.prototype.insert = function(value) {
-  var nodeToAdd = {};
-  nodeToAdd.value = value;
-  nodeToAdd.left = null;
-  nodeToAdd.right = null;
-  var currentNode = this;
+  var nodeToAdd = new BinarySearchTree(value);
   var checkAndAddNode = function(currentNode) {
     if (value < currentNode.value) {
       if (currentNode.left === null) {
@@ -38,7 +34,7 @@ BinarySearchTree.prototype.insert = function(value) {
       checkAndAddNode(currentNode.right);
     }
   };
-  checkAndAddNode(currentNode);
+  checkAndAddNode(this);
 
 };
 
