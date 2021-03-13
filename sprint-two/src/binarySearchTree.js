@@ -69,8 +69,22 @@ BinarySearchTree.prototype.contains = function(target) {
   return checkForValue(currentNode);
 };
 
-BinarySearchTree.prototype.depthFirstLog = function() {
+//run call back on first node
+// if node.left exists run callback on child
+//if node.right exitst run on child
 
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
+  var invokeCallback = function (node, cb) {
+    cb(node.value);
+    if (node.left !== null) {
+      invokeCallback(node.left, cb);
+    }
+    if (node.right !== null) {
+      invokeCallback(node.right, cb);
+    }
+    return;
+  };
+  invokeCallback(this, cb);
 };
 
 
