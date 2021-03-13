@@ -1,5 +1,56 @@
+
+
 var BinarySearchTree = function(value) {
+  this.left = null;
+  this.right = null;
+  this.value = value;
 };
+
+//create node to be placed
+//look at value of current node
+//if value is less than current nodes val
+// if curent nodes left value, if it is empty
+//insert node
+//else current node becomes node and start steps over
+// val is more than current node val
+// if curent nodes right value, if it is empty
+//insert node
+//else current node becomes node and start steps over
+
+BinarySearchTree.prototype.insert = function(value) {
+  var nodeToAdd = {};
+  nodeToAdd.value = value;
+  nodeToAdd.left = null;
+  nodeToAdd.right = null;
+  var currentNode = this;
+  var checkAndAddNode = function(currentNode) {
+    if (value < currentNode.value) {
+      if (currentNode.left === null) {
+        currentNode.left = nodeToAdd;
+        return;
+      }
+      checkAndAddNode(currentNode.left);
+    } else {
+      if (currentNode.right === null) {
+        currentNode.right = nodeToAdd;
+        return;
+      }
+      checkAndAddNode(currentNode.right);
+    }
+  };
+  checkAndAddNode(currentNode);
+
+};
+
+BinarySearchTree.prototype.contains = function() {
+
+};
+
+BinarySearchTree.prototype.depthFirstLog = function() {
+
+};
+
+
 
 
 /*
