@@ -42,8 +42,31 @@ BinarySearchTree.prototype.insert = function(value) {
 
 };
 
-BinarySearchTree.prototype.contains = function() {
 
+
+// look at value of first node
+// if node value same as target
+//return true
+// else if target is less than node value and node left val exists
+// start over with node as node.left
+// else if target is more than node value and node right val exists
+// start over with node.right
+// else return false
+
+BinarySearchTree.prototype.contains = function(target) {
+  var currentNode = this;
+  var checkForValue = function(currentNode) {
+    if (currentNode.value === target) {
+      return true;
+    } else if (target < currentNode.value && currentNode.left !== null) {
+      return checkForValue(curentNode.left);
+    } else if (target > currentNode.value && currentNode.right !== null) {
+      return checkForValue(currentNode.right);
+    } else {
+      return false;
+    }
+  };
+  return checkForValue(currentNode);
 };
 
 BinarySearchTree.prototype.depthFirstLog = function() {
